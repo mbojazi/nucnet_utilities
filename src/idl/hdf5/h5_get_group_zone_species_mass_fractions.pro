@@ -1,15 +1,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
 ;  This file was originally written by Bradley S. Meyer and Michael J. Bojazi.
 ;
 ;  This is free software; you can redistribute it and/or modify it
 ;  under the terms of the GNU General Public License as published by
-;  the Free Software Foundation; either version 3 of the License, or
+;  the Free Software Foundation; either version 2 of the License, or
 ;  (at your option) any later version.
 ;  but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;  GNU General Public License for more details.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;+
 ; :Description:
 ;    IDL function to retrieve the mass fraction of one or more species in a 
@@ -17,7 +18,8 @@
 ;
 ; :Params:
 ;    file = the name of the input file
-;    group = the group identifier (in the form 'Group 00030')
+;    group = the group identifier (in the form 'Step 00030' or 
+;            'Star 000000000195962')
 ;    zone = a three-element vector identifying the zone
 ;    species = the name of the species (more than one as an array)
 ;
@@ -25,11 +27,14 @@
 ;    a double of the mass fraction of one species or double array containing 
 ;    the mass fractions of multiple species in the zone for the group
 ;
-; :Example:
-;    IDL>print, h5_get_group_zone_species_mass_fractions( 'my_file.h5', 'Group 000
-;    21', [1,0,0], 'mg24' )
-;    IDL>print, h5_get_group_zone_species_mass_fractions( 'my_file.h5', 'Group 000
-;    21', [1,0,0], ['mg24','mg25','mg26'] )
+; :Example (copy and paste):
+;    (if my_output.h5)
+;    IDL>print, h5_get_group_zone_species_mass_fractions( 'my_output.h5', 'Step 00021', [4,9,7], 'mg24' )
+;    IDL>print, h5_get_group_zone_species_mass_fractions( 'my_output.h5', 'Step 00021', [4,9,7], ['mg24','mg25','mg26'] )
+;
+;    (if my_stars.h5 or my_remnants.h5)
+;    IDL>print, h5_get_group_zone_species_mass_fractions( 'my_stars.h5', 'Star 000000000195962', [0,0,0], 'mg24' )
+;    IDL>print, h5_get_group_zone_species_mass_fractions( 'my_remnants.h5', 'Star 000000000195962', [0,0,0], ['mg24','mg25','mg26'] )
 ;-
 
 function h5_get_group_zone_species_mass_fractions, file, group, zone, species
@@ -41,8 +46,7 @@ zone_index = h5_get_group_zone_index( file, group, zone )
 x_array = [0.]
 
 for n = 0, n_elements( species ) - 1 do begin
-  x =$
-    mass_fractions[species_indices[n],zone_index]
+  x = mass_fractions[species_indices[n],zone_index]
   x_array = [x_array,x]
 endfor
 

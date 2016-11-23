@@ -1,15 +1,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
 ;  This file was originally written by Bradley S. Meyer and Michael J. Bojazi.
 ;
 ;  This is free software; you can redistribute it and/or modify it
 ;  under the terms of the GNU General Public License as published by
-;  the Free Software Foundation; either version 3 of the License, or
+;  the Free Software Foundation; either version 2 of the License, or
 ;  (at your option) any later version.
 ;  but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;  GNU General Public License for more details.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;+
 ; :Description:
 ;    IDL function to retrieve all zone labels for a given group from a standard 
@@ -17,14 +18,19 @@
 ;
 ; :Params:
 ;    file = the name of the input file
-;    group = the group identifier (in the form 'Group 00030')
+;    group = the group identifier (in the form 'Step 00030' or 
+;            'Star 000000000195962')
 ;
 ; :Returns:
 ;    an array of structures, each structure (in the form 
 ;    { label_1 label_2 label_3 }) containing the labels of a zone for the group
+;          
+; :Example (copy and paste):
+;    (if my_output.h5)
+;    IDL>print, h5_get_group_zone_labels( 'my_output.h5', 'Step 00021' )
 ;
-; :Example:
-;    IDL>print, h5_get_group_zone_labels( 'my_file.h5', 'Group 00021' )
+;    (if my_stars.h5 or my_remnants.h5)
+;    IDL>print, h5_get_group_zone_labels( 'my_remnants.h5', 'Star 000000000195962' )
 ;-
 
 function h5_get_group_zone_labels, file, group

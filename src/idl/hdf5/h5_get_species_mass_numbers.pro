@@ -1,4 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;
 ;  This file was originally written by Bradley S. Meyer and Michael J. Bojazi.
 ;
 ;  This is free software; you can redistribute it and/or modify it
@@ -8,8 +9,8 @@
 ;  but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;  GNU General Public License for more details.
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;+
 ; :Description:
 ;    IDL function to retrieve the mass number of one or more species from a
@@ -20,10 +21,11 @@
 ;    species = the name of the species (more than one as an array)
 ;
 ; :Returns:
-;    a long integer of the mass number of one species or long integer array 
-;    containing the mass number of multiple species
+;    an unsigned-long integer of the mass number of one species or 
+;    unsigned-long integer array containing the mass numbers of multiple 
+;    species
 ;    
-; :Example:
+; :Example (copy and paste):
 ;    IDL>print, h5_get_species_mass_numbers( 'my_file.h5', 'si28' )
 ;    IDL>print, h5_get_species_mass_numbers( 'my_file.h5', ['si28','mn60'] )
 ;-
