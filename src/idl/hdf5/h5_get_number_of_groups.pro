@@ -14,7 +14,7 @@
 ;+
 ; :Description:
 ;    IDL function to retrieve the number of groups from a standard multi-zone 
-;    hdf5 output file
+;    hdf5 output file (less the nuclide data group)
 ;
 ; :Params:
 ;    file = the name of the input file
