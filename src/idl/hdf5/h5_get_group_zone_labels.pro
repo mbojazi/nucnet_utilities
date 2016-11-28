@@ -22,8 +22,9 @@
 ;            'Star 000000000195962')
 ;
 ; :Returns:
-;    an array of structures, each structure (in the form 
-;    { label_1 label_2 label_3 }) containing the labels of a zone for the group
+;    an array of structures of strings, each structure (in the form 
+;    { label_1 string, label_2 string, label_3 string }) containing the labels 
+;    of a zone for the group
 ;          
 ; :Example (copy and paste):
 ;    (if my_output.h5)

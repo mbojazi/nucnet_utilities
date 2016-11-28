@@ -13,8 +13,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;+
 ; :Description:
-;    IDL function to retrieve one or more properties in all groups for a given 
-;    zone from a standard multi-zone hdf5 output file
+;    IDL function to retrieve the value of one or more properties in all groups 
+;    for a given zone from a standard multi-zone hdf5 output file
 ;
 ; :Params:
 ;    file = the name of the input file
@@ -27,9 +27,8 @@
 ;               (see examples below)
 ;
 ; :Returns:
-;    a string of the value of one property for the zone in all groups; or a 
-;    two-dimensional array for the zone containing strings of the values of 
-;    multiple properties in all groups, the first dimension corresponding to 
+;    a two-dimensional array for the zone containing strings of the value of 
+;    one or more properties in all groups, the first dimension corresponding to 
 ;    each property and the second dimension corresponding to each group 
 ;
 ; :Example (copy and paste):
@@ -71,9 +70,8 @@ for n = 0, h5g_get_num_objs( file_id ) - 1 do begin
   endif
 endfor
 
-return,$ 
-  property_array[0:n_elements( property ) - 1,1:h5g_get_num_objs( file_id ) - 1]
-
 h5f_close, file_id
+
+return, property_array[0:n_elements( property ) - 1,1:*]
 
 end

@@ -13,8 +13,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;+
 ; :Description:
-;    IDL function to retrieve one or more properties in a given zone for a 
-;    given group from a standard multi-zone hdf5 output file
+;    IDL function to retrieve the value of one or more properties in a given 
+;    zone for a given group from a standard multi-zone hdf5 output file
 ;
 ; :Params:
 ;    file = the name of the input file
@@ -29,8 +29,8 @@
 ;               (see examples below)
 ;    
 ; :Returns:
-;    a string of the value of one property or string array containing the 
-;    values of multiple properties in the zone for the group
+;    a string array containing the value of one or more properties in the zone 
+;    for the group
 ;    
 ; :Example (copy and paste):
 ;    (if my_output.h5)
@@ -61,7 +61,6 @@ function h5_get_group_zone_properties, file, group, zone, property
 file_id = h5f_open( file )
 group_id = h5g_open( file_id, group )
 props_id = h5g_open( group_id, 'Zone Properties' )
-
 zone_id =$
   h5d_open($
     props_id,$
@@ -105,8 +104,7 @@ for n = 0, n_elements( property ) - 1 do begin
     prop = where( s.name eq property[n] )
   endif   
 
-  property_array =$
-    [property_array,s[prop].value]      
+  property_array = [property_array,s[prop].value]      
 endfor
 
 return, property_array[1:n_elements( property )]
